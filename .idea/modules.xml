@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FoodLIfe.iml" filepath="$PROJECT_DIR$/FoodLIfe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FoodLIfe.iml" filepath="$PROJECT_DIR$/.idea/FoodLIfe.iml" />
+      <module fileurl="file://C:\Users\kevin_000\AndroidStudio_EE461L\FoodLIfe\FoodLIfe.iml" filepath="C:\Users\kevin_000\AndroidStudio_EE461L\FoodLIfe\FoodLIfe.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
