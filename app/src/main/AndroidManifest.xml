@@ -20,7 +20,8 @@
         <activity android:name=".GroceryActivity" />
         <activity android:name=".PantryActivity" />
         <activity android:name=".UtilityActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".addRecipes"></activity>
     </application>
 
 </manifest>
