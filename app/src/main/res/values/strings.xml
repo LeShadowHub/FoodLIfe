@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">FoodLIfe</string>
+    <string name="app_name">FoodLife</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_in_with_google">SIGN IN WITH GOOGLE</string>
+    <string name="foodlife">FoodLife</string>
+    <string name="title">Title</string>
+    <string name="enter_your_note">Enter your note</string>
+    <string name="create">create</string>
+    <string name="save">save</string>
+    <string name="delete">delete</string>
+    <string name="cancel">cancel</string>
+    <string name="update">update</string>
 </resources>

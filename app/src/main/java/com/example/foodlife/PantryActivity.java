@@ -3,6 +3,8 @@ package com.example.foodlife;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.foodlife.R;
+
 public class PantryActivity extends AppCompatActivity {
 
     @Override
