@@ -12,11 +12,11 @@
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecipeActivity" />
+        <activity android:name=".RecipeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".GroceryActivity" />
         <activity android:name=".PantryActivity" />
         <activity android:name=".UtilityActivity" />
