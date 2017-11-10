@@ -1,6 +1,7 @@
 package com.example.foodlife;
 
 import android.content.Intent;
+import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent newNoteListActivity = new Intent(MainActivity.this, NoteListActivity.class);
                 startActivity(newNoteListActivity);
+
             }
         });
     }
