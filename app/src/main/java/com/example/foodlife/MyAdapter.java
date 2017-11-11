@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private ArrayList<String> values;
+    private static ArrayList<String> values;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -75,7 +75,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     }
 
-    public ArrayList<String> getValues(){
+    public static ArrayList<String> getValues(){
         return values;
     }
 
