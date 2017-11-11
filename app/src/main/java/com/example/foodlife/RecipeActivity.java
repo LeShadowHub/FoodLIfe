@@ -91,6 +91,8 @@ public class RecipeActivity extends AppCompatActivity implements NavigationView.
             case R.id.suggestions_button:
                 Toast.makeText(this, "Suggestions based on your pantry.", Toast.LENGTH_SHORT)
                         .show();
+                Intent intent = new Intent (this, recipeSuggestions.class);
+                startActivity(intent);
                 break;
             // action with ID action_settings was selected
             case R.id.search_button:
