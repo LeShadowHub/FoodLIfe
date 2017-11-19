@@ -8,13 +8,13 @@
     <TextView
         android:id="@+id/line"
         android:layout_width="fill_parent"
-        android:layout_height="40dip"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:ellipsize="marquee"
-        android:singleLine="true"
-        android:text="Description"
-        android:textSize="24sp"
+        android:text=""
+        android:textSize="18sp"
+        android:layout_gravity="fill"
         android:textColor="@color/black"/>
 
 

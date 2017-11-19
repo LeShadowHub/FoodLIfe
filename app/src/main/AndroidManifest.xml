@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.foodlife">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -25,7 +26,10 @@
         <activity android:name=".UtilityActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".addRecipes" />
-        <activity android:name=".recipeSuggestions"></activity>
+        <activity android:name=".recipeSuggestions" />
+        <activity android:name=".ConversionsActivity">
+            android:windowSoftInputMode="adjustPan">
+        </activity>
     </application>
 
 </manifest>

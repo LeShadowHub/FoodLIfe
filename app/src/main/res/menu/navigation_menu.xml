@@ -18,4 +18,7 @@
     <item android:id="@+id/nav_Settings"
         android:title = "Settings" />
 
+    <item android:id="@+id/nav_Utilities"
+        android:title = "Utilities" />
+
 </menu>
