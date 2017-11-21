@@ -1,21 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_bg"
     tools:context="com.example.foodlife.MainActivity">
 
 
+
     <Button
-        android:id="@+id/btnGrocery"
+        android:id="@+id/btnNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Menu"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="Note"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <com.example.foodlife.ResizableImageView
+        android:id="@+id/btnRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recipe"
+        app:srcCompat="@drawable/recipes_title"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="4dp"
+        android:layout_alignParentStart="true" />
+
+    <com.example.foodlife.ResizableImageView
+        android:id="@+id/btnGrocery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/grocery"
+        app:srcCompat="@drawable/grocery_title"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:layout_alignParentEnd="true"/>
+
+    <com.example.foodlife.ResizableImageView
+        android:id="@+id/btnPantry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pantry"
+        app:srcCompat="@drawable/pantry_title"
+        android:layout_below="@id/btnRecipe"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="2dp"
+        android:layout_alignParentStart="true"/>
+
+    <com.example.foodlife.ResizableImageView
+        android:id="@+id/btnUtility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/utility"
+        app:srcCompat="@drawable/utility_title"
+        android:layout_below="@id/btnGrocery"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_alignParentEnd="true"/>
+
+
+
+</RelativeLayout>

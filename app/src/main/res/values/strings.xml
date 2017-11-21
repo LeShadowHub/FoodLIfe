@@ -11,4 +11,9 @@
     <string name="delete">delete</string>
     <string name="cancel">cancel</string>
     <string name="update">update</string>
+    <string name="grocery">grocery</string>
+    <string name="recipe">recipe</string>
+    <string name="utility">utility</string>
+    <string name="pantry">pantry</string>
+    <string name="sign_out">Sign out</string>
 </resources>

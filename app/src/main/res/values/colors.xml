@@ -5,8 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
 
-    <color name="red_pressed">#B64032</color>
-    <color name="red_normal">#DD4B39</color>
+    <color name="red_pressed">#5D4037</color>
+    <color name="red_normal">#795548</color>
     <color name="blue_pressed">#1b906b</color>
     <color name="blue_normal">#20ab7f</color>
 
