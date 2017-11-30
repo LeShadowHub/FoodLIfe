@@ -1,8 +1,5 @@
 package com.example.foodlife;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -49,13 +45,13 @@ public class ConversionsActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new Adapter(history);
+        mAdapter = new RecipeListAdapter(history);
         mRecyclerView.setAdapter(mAdapter);
 
 
         buttonGo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                convertAmounts(new VolleyCallback() {
+                convertAmounts(new VolleyCallbackString() {
                     @Override
                     public void onSuccess(String result) {
                         history.add(result);
@@ -79,7 +75,7 @@ public class ConversionsActivity extends AppCompatActivity {
         });
     }
 
-    private void convertAmounts(final VolleyCallback callback){
+    private void convertAmounts(final VolleyCallbackString callback){
 
 
         String ingredientName = ((EditText)(findViewById(R.id.ingredientName))).getText().toString();

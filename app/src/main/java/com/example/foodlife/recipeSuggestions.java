@@ -1,6 +1,5 @@
 package com.example.foodlife;
 
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,8 +28,8 @@ import org.json.JSONObject;
 
 public class recipeSuggestions extends AppCompatActivity {
 
-    String ingredients;
     ArrayList <String> allIngredients = new ArrayList<String>();
+    ArrayList <JSONObject> returnRecipes = new ArrayList<JSONObject>();
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -47,7 +44,7 @@ public class recipeSuggestions extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new Adapter(allIngredients);
+        mAdapter = new InputListAdapter(allIngredients);
         mRecyclerView.setAdapter(mAdapter);
 
 
@@ -62,22 +59,37 @@ public class recipeSuggestions extends AppCompatActivity {
             }
         });
 
+
+
         final Button goButton = (Button) findViewById(R.id.goButton);
         goButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                generateRecipes();
+                generateRecipes(new VolleyCallbackJSONArray() {
+                    @Override
+                    public void onSuccess(JSONArray result) {
+                        try {
+                            for (int j = 0; j < result.length(); j++) {
+                                JSONObject recipe = result.getJSONObject(j);
+                                returnRecipes.add(recipe);
+
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
-
-
-
     }
 
-    private ArrayList<JSONObject> generateRecipes(){
 
-        final ArrayList <JSONObject> returnRecipes = new ArrayList<JSONObject>();
 
-        allIngredients = Adapter.getValues();
+
+
+    private void generateRecipes(final VolleyCallbackJSONArray callback){
+
+        allIngredients = RecipeListAdapter.getValues();
         String urlInput = allIngredients.get(0);
         for(int i = 1; i < allIngredients.size(); i++){
             urlInput += "%2C" + allIngredients.get(i);
@@ -85,24 +97,14 @@ public class recipeSuggestions extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients= "
-                + urlInput +"&limitLicense=false&number=10&ranking=1";
+                + urlInput +"&limitLicense=false&number=20&ranking=1";
 
         JsonArrayRequest jsObjRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                try {
 
-                    for (int j = 0; j < response.length(); j++) {
-                        JSONObject recipe = response.getJSONObject(j);
-                        returnRecipes.add(recipe);
-                    
+                    callback.onSuccess(response);
 
-
-                    }
-
-                }catch(JSONException e){
-                    e.printStackTrace();
-                }
             }
 
         }, new Response.ErrorListener() {
@@ -122,7 +124,7 @@ public class recipeSuggestions extends AppCompatActivity {
         };
         requestQueue.add(jsObjRequest);
 
-        return returnRecipes;}
+        }
 
 }
 

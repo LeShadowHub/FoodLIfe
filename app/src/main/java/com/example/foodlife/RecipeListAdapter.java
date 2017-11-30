@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolder> {
     private static ArrayList<String> values;
 
     // Provide a reference to the views for each data item
@@ -40,19 +40,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public Adapter(ArrayList<String> myDataset) {
+    public RecipeListAdapter(ArrayList<String> myDataset) {
         values = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                 int viewType) {
+    public RecipeListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                           int viewType) {
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(
                 parent.getContext());
         View v =
-                inflater.inflate(R.layout.suggestions_input_layout, parent, false);
+                inflater.inflate(R.layout.recipe_results, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
