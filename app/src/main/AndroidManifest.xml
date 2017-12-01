@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.foodlife">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_custom_launcher_1_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,18 +20,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecipeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".GroceryActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".PantryActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".UtilityActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".RecipeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GroceryActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PantryActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UtilityActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NoteListActivity" />
         <activity android:name=".NoteActivity" />
+        <activity
+            android:name=".GroceryTaskActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <provider
+            android:name="com.example.foodlife.data.TaskContentProvider"
+            android:authorities="com.example.foodlife.provider"
+            android:exported="false" />
+
     </application>
 
 </manifest>

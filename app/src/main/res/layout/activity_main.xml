@@ -4,18 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg"
+    android:background="#5D4037"
     tools:context="com.example.foodlife.MainActivity">
-
-
-
-    <Button
-        android:id="@+id/btnNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Note"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
 
     <com.example.foodlife.ResizableImageView
         android:id="@+id/btnRecipe"
@@ -62,6 +52,40 @@
         android:layout_marginStart="2dp"
         android:layout_marginEnd="8dp"
         android:layout_alignParentEnd="true"/>
+
+
+    <ListView
+        android:id="@+id/notification"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btnPantry"
+        android:padding="5dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/border_box" />
+
+    <Button
+        android:id="@+id/btnNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_box"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="15dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:text="@string/quick_note"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/testing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnNote"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:textColor="@android:color/black"
+        android:text="TextView" />
+
 
 
 

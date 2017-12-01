@@ -7,18 +7,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnGrocery = (Button) findViewById(R.id.btnNote);
+        TextView testing = (TextView) findViewById(R.id.testing);
+        Button btnNote = (Button) findViewById(R.id.btnNote);
         ResizableImageView pantryView = (ResizableImageView) findViewById(R.id.btnPantry);
         ResizableImageView utilityView = (ResizableImageView) findViewById(R.id.btnUtility);
+        ResizableImageView groceryView = (ResizableImageView) findViewById(R.id.btnGrocery);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+             user_id = extras.getString("USER_ID");
+        }
+
+        testing.setText(user_id);
 
         pantryView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,12 +48,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnGrocery.setOnClickListener(new View.OnClickListener() {
+        groceryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newGroceryActivity = new Intent(MainActivity.this, GroceryActivity.class);
+                startActivity(newGroceryActivity);
+            }
+        });
+
+        btnNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent newNoteListActivity = new Intent(MainActivity.this, NoteListActivity.class);
                 startActivity(newNoteListActivity);
-
             }
         });
     }

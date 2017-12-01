@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSignIn;
     private Button btnSignOut;
     private Button btnGoogle;
+    private Button btnEnter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
         btnSignOut = (Button) findViewById(R.id.btnSignOut);
         btnGoogle = (Button) findViewById(R.id.googleSignIn);
+        btnEnter = (Button) findViewById(R.id.googleEnter);
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -77,6 +79,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btnEnter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser user = mAuth.getCurrentUser();
+
+                if(user != null){
+                    Intent newMenuActivity = new Intent(LoginActivity.this, MainActivity.class);
+                    newMenuActivity.putExtra("USER_ID", user.getUid());
+                    startActivity(newMenuActivity);
+                }
+            }
+        });
     }
 
     @Override
@@ -124,23 +138,16 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            updateUI(user);
                             Toast.makeText(LoginActivity.this, "Authentication Successful.",
-                                    Toast.LENGTH_LONG).show();
+                                    Toast.LENGTH_SHORT).show();
 
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Intent newMenuActivity = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(newMenuActivity);
-                                }
-                            }, 2000);
+                            updateUI(user);
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication Failed.",
-                                    Toast.LENGTH_LONG).show();
+                                    Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
                     }
@@ -158,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         updateUI(null);
                         Toast.makeText(LoginActivity.this, "Sign Out Successful.",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -178,20 +185,23 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateUI(FirebaseUser user) {
+    private void updateUI(final FirebaseUser user) {
         if (user != null) {
             //mStatusTextView.setText(getString(R.string.google_status_fmt, user.getEmail()));
             //mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
             btnSignIn.setVisibility(View.GONE);
             btnSignOut.setVisibility(View.VISIBLE);
+            btnEnter.setVisibility(View.VISIBLE);
             btnGoogle.setVisibility(View.GONE);
+
         } else {
             //mStatusTextView.setText(R.string.signed_out);
             //mDetailTextView.setText(null);
 
             btnSignIn.setVisibility(View.VISIBLE);
             btnSignOut.setVisibility(View.GONE);
+            btnEnter.setVisibility(View.GONE);
             btnGoogle.setVisibility(View.VISIBLE);
         }
     }

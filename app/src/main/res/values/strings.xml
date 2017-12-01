@@ -16,4 +16,9 @@
     <string name="utility">utility</string>
     <string name="pantry">pantry</string>
     <string name="sign_out">Sign out</string>
+
+    <string name="client_id">811054528070-hpiup82em2g2msdtn9d1a169onn65ce2.apps.googleusercontent.com</string>
+    <string name="enter">Enter</string>
+    <string name="quick_note">Quick Note</string>
+    <string name="add_new_item">Add new item..</string>
 </resources>

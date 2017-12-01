@@ -2,12 +2,18 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#20ab7f</color>
+    <color name="colorPrimaryLight">#C5CAE9</color>
     <color name="colorAccent">#FF4081</color>
 
 
-    <color name="red_pressed">#5D4037</color>
-    <color name="red_normal">#795548</color>
-    <color name="blue_pressed">#1b906b</color>
-    <color name="blue_normal">#20ab7f</color>
+    <color name="brown_pressed">#5D4037</color>
+    <color name="brown_normal">#795548</color>
+    <color name="teal_pressed">#1b906b</color>
+    <color name="teal_normal">#20ab7f</color>
+
+    <!-- colors for task priority selection -->
+    <color name="materialRed">#E74C3C</color>
+    <color name="materialOrange">#E67E22</color>
+    <color name="materialYellow">#F1C40F</color>
 
 </resources>
