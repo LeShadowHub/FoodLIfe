@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class RecipeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class RecipeMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -95,13 +95,15 @@ public class RecipeActivity extends AppCompatActivity implements NavigationView.
             case R.id.suggestions_button:
                 Toast.makeText(this, "Suggestions based on your pantry.", Toast.LENGTH_SHORT)
                         .show();
-                Intent intent = new Intent (this, recipeSuggestions.class);
-                startActivity(intent);
+
+
                 break;
             // action with ID action_settings was selected
             case R.id.search_button:
-                Toast.makeText(this, "Enter your cravings here!", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Search by Ingredients.", Toast.LENGTH_SHORT)
                         .show();
+                Intent intent = new Intent (this, recipeSuggestionsInput.class);
+                startActivity(intent);
                 break;
             default:
                 break;

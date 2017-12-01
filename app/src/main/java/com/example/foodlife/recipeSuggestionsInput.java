@@ -1,5 +1,6 @@
 package com.example.foodlife;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,12 +25,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+public class recipeSuggestionsInput extends AppCompatActivity {
 
-
-public class recipeSuggestions extends AppCompatActivity {
-
-    ArrayList <String> allIngredients = new ArrayList<String>();
-    ArrayList <JSONObject> returnRecipes = new ArrayList<JSONObject>();
+    private ArrayList <String> allIngredients = new ArrayList<String>();
+    private static ArrayList <JSONObject> returnRecipes = new ArrayList<JSONObject>();
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -60,7 +59,6 @@ public class recipeSuggestions extends AppCompatActivity {
         });
 
 
-
         final Button goButton = (Button) findViewById(R.id.goButton);
         goButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -68,28 +66,38 @@ public class recipeSuggestions extends AppCompatActivity {
                     @Override
                     public void onSuccess(JSONArray result) {
                         try {
+
                             for (int j = 0; j < result.length(); j++) {
                                 JSONObject recipe = result.getJSONObject(j);
                                 returnRecipes.add(recipe);
-
-
                             }
+                            show();
+
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                           e.printStackTrace();
                         }
                     }
                 });
+
+
             }
         });
+
     }
 
+    public static ArrayList<JSONObject> getRecipes(){
+        return returnRecipes;
+    }
 
-
+    private void show(){
+        Intent intent = new Intent(this, RecipeListView.class);
+        startActivity(intent);
+    }
 
 
     private void generateRecipes(final VolleyCallbackJSONArray callback){
 
-        allIngredients = RecipeListAdapter.getValues();
+        allIngredients = InputListAdapter.getValues();
         String urlInput = allIngredients.get(0);
         for(int i = 1; i < allIngredients.size(); i++){
             urlInput += "%2C" + allIngredients.get(i);
@@ -97,14 +105,12 @@ public class recipeSuggestions extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients= "
-                + urlInput +"&limitLicense=false&number=20&ranking=1";
+                + urlInput +"&limitLicense=false&number=10&ranking=1";
 
         JsonArrayRequest jsObjRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-
                     callback.onSuccess(response);
-
             }
 
         }, new Response.ErrorListener() {

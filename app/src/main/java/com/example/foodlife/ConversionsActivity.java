@@ -45,7 +45,7 @@ public class ConversionsActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RecipeListAdapter(history);
+        mAdapter = new InputListAdapter(history);
         mRecyclerView.setAdapter(mAdapter);
 
 

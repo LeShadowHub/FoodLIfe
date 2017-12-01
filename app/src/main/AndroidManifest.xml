@@ -19,17 +19,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RecipeActivity"
+            android:name=".RecipeMainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".GroceryActivity" />
         <activity android:name=".PantryActivity" />
         <activity android:name=".UtilityActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".addRecipes" />
-        <activity android:name=".recipeSuggestions" />
+        <activity android:name=".recipeSuggestionsInput" />
         <activity android:name=".ConversionsActivity">
             android:windowSoftInputMode="adjustPan">
         </activity>
+        <activity android:name=".RecipeListView" />
+        <activity android:name=".pullRecipe"></activity>
     </application>
 
 </manifest>
