@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "811054528070",
+    "firebase_url": "https://foodlife-96cd8.firebaseio.com",
+    "project_id": "foodlife-96cd8",
+    "storage_bucket": "foodlife-96cd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811054528070:android:c8408cb6d102086c",
+        "android_client_info": {
+          "package_name": "com.example.foodlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811054528070-86hc4s8qphblkmudm7aadt648ua1t803.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodlife",
+            "certificate_hash": "96c8eaa2fbb7dd5921eb26701fdaf1d7b61a85da"
+          }
+        },
+        {
+          "client_id": "811054528070-os2f5uoe1huhgtu7gpvnl28mre13r2t4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodlife",
+            "certificate_hash": "0d9639a0ec3eacdf187847b7248b39c6fc872369"
+          }
+        },
+        {
+          "client_id": "811054528070-hpiup82em2g2msdtn9d1a169onn65ce2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtAsnFpgwU8KAVM6rd7eJgqBkL2McbaHE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811054528070-hpiup82em2g2msdtn9d1a169onn65ce2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
