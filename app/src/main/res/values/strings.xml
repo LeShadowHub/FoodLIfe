@@ -21,4 +21,8 @@
     <string name="enter">Enter</string>
     <string name="quick_note">Quick Note</string>
     <string name="add_new_item">Add new item..</string>
+    <string name="description">Description</string>
+    <string name="guest">Guest</string>
+    <string name="item">Item</string>
+    <string name="expiration_date_mm_dd_yy">Expiration Date (MM/DD/YY)</string>
 </resources>

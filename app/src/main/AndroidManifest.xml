@@ -39,13 +39,16 @@
         <activity android:name=".NoteActivity" />
         <activity
             android:name=".GroceryTaskActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
-            android:name="com.example.foodlife.data.TaskContentProvider"
+            android:name=".data.TaskContentProvider"
             android:authorities="com.example.foodlife.provider"
             android:exported="false" />
 
+        <activity
+            android:name=".PantryListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

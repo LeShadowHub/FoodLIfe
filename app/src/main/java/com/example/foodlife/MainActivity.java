@@ -30,12 +30,13 @@ public class MainActivity extends AppCompatActivity {
              user_id = extras.getString("USER_ID");
         }
 
-        testing.setText(user_id);
+        //testing.setText(user_id);
 
         pantryView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent newPantryActivity = new Intent(MainActivity.this, PantryActivity.class);
+                newPantryActivity.putExtra("USER_ID", user_id);
                 startActivity(newPantryActivity);
             }
         });
