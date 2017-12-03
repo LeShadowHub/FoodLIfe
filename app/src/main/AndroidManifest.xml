@@ -31,7 +31,9 @@
             android:windowSoftInputMode="adjustPan">
         </activity>
         <activity android:name=".RecipeListView" />
-        <activity android:name=".pullRecipe"></activity>
+        <activity android:name=".pullRecipe" />
+        <activity android:name=".recipeBook" />
+        <activity android:name=".displayRecipeBook"></activity>
     </application>
 
 </manifest>

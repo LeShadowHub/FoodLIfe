@@ -7,31 +7,45 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class RecipeMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+    private static ArrayList<String> pantryIngredients = new ArrayList<String>();
+    private static ArrayList <JSONObject> returnRecipes = new ArrayList<JSONObject>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        //Add Recipe Button
-        FloatingActionButton newRecipe = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        newRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addRecipe(view);
-            }
-        });
+        pantryIngredients = (ArrayList<String>) getIntent().getSerializableExtra("pantry");
+
 
         //Custom App Bar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -48,13 +62,83 @@ public class RecipeMainActivity extends AppCompatActivity implements NavigationV
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        generateRecipes(new VolleyCallbackJSONArray() {
+            @Override
+            public void onSuccess(JSONArray result) {
+                try{
+                    for (int j = 0; j < result.length(); j++) {
+                        JSONObject recipe = result.getJSONObject(j);
+                        returnRecipes.add(recipe);
+                    }
+                    show();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
 
+            }
+        });
 
     }
 
-    public void addRecipe(View view){
-        Intent intent = new Intent(this, addRecipes.class);
-        startActivity(intent);
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+    private void show(){
+        //Intent intent = new Intent(this, RecipeListView.class);
+        //intent.putExtra("recipes", returnRecipes);
+        //startActivity(intent);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recipeList);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new RecipeListAdapter(returnRecipes);
+        mRecyclerView.setAdapter(mAdapter);
+
+    }
+
+    private void generateRecipes(final VolleyCallbackJSONArray callback){
+
+        String urlInput = "";
+        if(pantryIngredients != null){
+            if(pantryIngredients.size() != 0){
+                urlInput = pantryIngredients.get(0);
+                for(int i = 1; i < pantryIngredients.size(); i++){
+                    urlInput += "%2C" + pantryIngredients.get(i);
+                }
+            }
+        }
+
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients= "
+                + urlInput +"&limitLicense=false&number=1&ranking=1";
+
+        JsonArrayRequest jsObjRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                callback.onSuccess(response);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VolleyError", error.toString());
+            }
+
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<>();
+                params.put("X-Mashape-Key", keys.getFoodAPIKey());
+                return params;
+            }
+        };
+        requestQueue.add(jsObjRequest);
+
     }
 
     public boolean onNavigationItemSelected(MenuItem item){
@@ -69,6 +153,8 @@ public class RecipeMainActivity extends AppCompatActivity implements NavigationV
         }
         if(id == R.id.nav_Recipes){
             Toast.makeText(this, "You are currently on Recipes.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, recipeBook.class);
+            startActivity(intent);
         }
         if(id == R.id.nav_Utilities){
             Intent intent = new Intent(this, ConversionsActivity.class);

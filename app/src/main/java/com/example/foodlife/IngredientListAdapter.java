@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class InputListAdapter extends RecyclerView.Adapter<InputListAdapter.ViewHolder> {
+public class IngredientListAdapter extends RecyclerView.Adapter<IngredientListAdapter.ViewHolder> {
+
     private static ArrayList<String> values;
 
     // Provide a reference to the views for each data item
@@ -29,24 +30,15 @@ public class InputListAdapter extends RecyclerView.Adapter<InputListAdapter.View
         }
     }
 
-    public void add(int position, String item) {
-        values.add(position, item);
-        notifyItemInserted(position);
-    }
-
-    public void remove(int position) {
-        values.remove(position);
-        notifyItemRemoved(position);
-    }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public InputListAdapter(ArrayList<String> myDataset) {
+    public IngredientListAdapter(ArrayList<String> myDataset) {
         values = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public InputListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public IngredientListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                           int viewType) {
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(
@@ -68,10 +60,9 @@ public class InputListAdapter extends RecyclerView.Adapter<InputListAdapter.View
         holder.txt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                remove(position);
+
             }
         });
-
 
     }
 

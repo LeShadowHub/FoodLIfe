@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.android.volley.AuthFailureError;
@@ -72,7 +73,6 @@ public class recipeSuggestionsInput extends AppCompatActivity {
                                 returnRecipes.add(recipe);
                             }
                             show();
-
                         } catch (JSONException e) {
                            e.printStackTrace();
                         }
@@ -85,27 +85,36 @@ public class recipeSuggestionsInput extends AppCompatActivity {
 
     }
 
-    public static ArrayList<JSONObject> getRecipes(){
-        return returnRecipes;
-    }
-
     private void show(){
         Intent intent = new Intent(this, RecipeListView.class);
         startActivity(intent);
     }
 
+    @Override
+    protected void onResume() {
 
+        super.onResume();
+        returnRecipes.clear();
+    }
+
+    public static ArrayList<JSONObject> getRecipeList(){
+        return returnRecipes;
+    }
     private void generateRecipes(final VolleyCallbackJSONArray callback){
 
         allIngredients = InputListAdapter.getValues();
-        String urlInput = allIngredients.get(0);
-        for(int i = 1; i < allIngredients.size(); i++){
-            urlInput += "%2C" + allIngredients.get(i);
+        String urlInput = "";
+        if(allIngredients.size() != 0){
+            urlInput = allIngredients.get(0);
+            for(int i = 1; i < allIngredients.size(); i++){
+                urlInput += "%2C" + allIngredients.get(i);
+            }
         }
+
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients= "
-                + urlInput +"&limitLicense=false&number=10&ranking=1";
+                + urlInput +"&limitLicense=false&number=2&ranking=1";
 
         JsonArrayRequest jsObjRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override

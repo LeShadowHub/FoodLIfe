@@ -1,25 +1,41 @@
 package com.example.foodlife;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolder> {
+    public static final String MY_PREFS_NAME = "SavedRecipes";
     private static ArrayList<JSONObject> values;
+    private Context context;
+    private JSONObject pulledRecipe;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -27,6 +43,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         public View view;
         public JSONObject currentItem;
+        SharedPreferences.Editor editor;
 
         CardView cv;
         TextView recipeTitle;
@@ -38,7 +55,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
             view = itemView;
             view.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    Context context = itemView.getContext();
+                    context = itemView.getContext();
                     Intent intent = new Intent(context, pullRecipe.class);
                     Bundle b = new Bundle();
                     try {
@@ -55,9 +72,68 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
             recipeTitle = (TextView) itemView.findViewById(R.id.recipeTitle);
             recipeDescription = (TextView) itemView.findViewById(R.id.recipeDescription);
             recipePicture = (ImageView) itemView.findViewById(R.id.recipePicture);
+
+            FloatingActionButton fab = (FloatingActionButton) itemView.findViewById(R.id.recipeCardFAB);
+            fab.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    try{
+                        editor = itemView.getContext().getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE).edit();
+                        context = view.getContext();
+
+                        getRecipeInformation(new VolleyCallbackJSONObject() {
+                            @Override
+                            public void onSuccess(JSONObject result) {
+                                pulledRecipe = result;
+                                setPreferences(editor, (String) recipeTitle.getText());
+
+                            }
+                        }, (int) currentItem.get("id"));
+
+
+
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+
+
+                }
+            });
         }
     }
 
+    public void setPreferences(SharedPreferences.Editor editor, String title){
+        editor.putString(title, pulledRecipe.toString());
+        editor.apply();
+    }
+
+    private void getRecipeInformation(final VolleyCallbackJSONObject callback, int id){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        String url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information?includeNutrition=false";
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callback.onSuccess(response);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VolleyError", error.toString());
+            }
+
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<>();
+                params.put("X-Mashape-Key", keys.getFoodAPIKey());
+                return params;
+            }
+        };
+        requestQueue.add(jsObjRequest);
+
+    }
     // Provide a suitable constructor (depends on the kind of dataset)
     public RecipeListAdapter(ArrayList<JSONObject> myDataset) {
         values = myDataset;

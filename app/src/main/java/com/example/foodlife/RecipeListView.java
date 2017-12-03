@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import org.json.JSONObject;
 
+
 import java.util.ArrayList;
 
 public class RecipeListView extends AppCompatActivity {
@@ -22,9 +23,8 @@ public class RecipeListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_view);
 
+        recipeList = recipeSuggestionsInput.getRecipeList();
 
-
-        recipeList = recipeSuggestionsInput.getRecipes();
         mRecyclerView = (RecyclerView) findViewById(R.id.recipeList);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
