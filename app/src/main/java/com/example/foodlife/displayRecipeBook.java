@@ -54,6 +54,7 @@ public class displayRecipeBook extends AppCompatActivity {
 
         try {
             JSONArray extendedIngredients = (JSONArray) recipe.get("extendedIngredients");
+            System.out.println(extendedIngredients);
             for(int i = 0; i < extendedIngredients.length(); i++){
                 JSONObject currentIngredient = (JSONObject)extendedIngredients.get(i);
                 System.out.println(currentIngredient.get("originalString"));
@@ -71,7 +72,11 @@ public class displayRecipeBook extends AppCompatActivity {
                 recipeImage.setImageResource(R.drawable.recipe_pic_missing);
             }else Picasso.with(recipeImage.getContext()).load(imageURL).into(recipeImage);
 
-            instructions = (String)recipe.get("instructions");
+            if(recipe.get("instructions").equals(null)){
+                instructions = "No instructions provided.";
+            }else{
+                instructions = (String)recipe.get("instructions");
+            }
             System.out.println(instructions);
             TextView instructionView = (TextView) findViewById(R.id.recipeDirections);
             instructionView.setText(instructions);

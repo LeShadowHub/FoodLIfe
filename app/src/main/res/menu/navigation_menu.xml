@@ -4,21 +4,26 @@
 
     <item
         android:id="@+id/nav_Recipes"
-        android:icon="@drawable/ic_search"
-        android:title= "Recipes"/>
+        android:icon="@drawable/cookbook"
+        android:title= "@string/recipes"/>
 
 
     <item android:id="@+id/nav_Groceries"
         android:icon="@drawable/ic_groceries"
-        android:title = "Groceries"/>
+        android:title = "@string/groceries"/>
 
     <item android:id="@+id/nav_Pantry"
-        android:title = "Pantry" />
-
-    <item android:id="@+id/nav_Settings"
-        android:title = "Settings" />
+        android:icon="@drawable/ic_pantry"
+        android:title = "@string/pantry" />
 
     <item android:id="@+id/nav_Utilities"
-        android:title = "Utilities" />
+        android:icon="@drawable/ic_utilities"
+        android:title = "@string/utilities" />
+
+    <item android:id="@+id/nav_Settings"
+        android:icon="@drawable/ic_settings"
+        android:title = "@string/settings" />
+
+
 
 </menu>

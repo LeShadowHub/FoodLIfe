@@ -10,21 +10,17 @@
             app:title="@string/app_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="4dp"
             android:background="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat"
-            />
+            app:popupTheme="@style/ThemeOverlay.AppCompat" />
 
     <android.support.v4.widget.DrawerLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-
 
         <RelativeLayout
             android:id="@+id/content_frame"
@@ -35,12 +31,7 @@
                 android:id="@+id/recipeList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+          />
 
 
         </RelativeLayout>
@@ -50,8 +41,7 @@
             android:id="@+id/navigation_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_gravity="start"
             app:menu="@menu/navigation_menu">
         </android.support.design.widget.NavigationView>
 

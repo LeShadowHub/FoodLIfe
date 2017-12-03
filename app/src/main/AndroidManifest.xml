@@ -33,7 +33,8 @@
         <activity android:name=".RecipeListView" />
         <activity android:name=".pullRecipe" />
         <activity android:name=".recipeBook" />
-        <activity android:name=".displayRecipeBook"></activity>
+        <activity android:name=".displayRecipeBook" />
+        <activity android:name=".searchRecipes"></activity>
     </application>
 
 </manifest>

@@ -44,8 +44,9 @@ public class RecipeMainActivity extends AppCompatActivity implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        pantryIngredients = (ArrayList<String>) getIntent().getSerializableExtra("pantry");
-
+      //  pantryIngredients = (ArrayList<String>) getIntent().getSerializableExtra("pantry");
+        pantryIngredients.add("biscuits");
+        pantryIngredients.add("eggs");
 
         //Custom App Bar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -85,9 +86,6 @@ public class RecipeMainActivity extends AppCompatActivity implements NavigationV
     private RecyclerView.LayoutManager mLayoutManager;
 
     private void show(){
-        //Intent intent = new Intent(this, RecipeListView.class);
-        //intent.putExtra("recipes", returnRecipes);
-        //startActivity(intent);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recipeList);
         mRecyclerView.setHasFixedSize(true);
@@ -153,8 +151,6 @@ public class RecipeMainActivity extends AppCompatActivity implements NavigationV
         }
         if(id == R.id.nav_Recipes){
             Toast.makeText(this, "You are currently on Recipes.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, recipeBook.class);
-            startActivity(intent);
         }
         if(id == R.id.nav_Utilities){
             Intent intent = new Intent(this, ConversionsActivity.class);
@@ -177,20 +173,26 @@ public class RecipeMainActivity extends AppCompatActivity implements NavigationV
         }
 
         switch (item.getItemId()) {
-            // action with ID action_refresh was selected
+
             case R.id.suggestions_button:
-                Toast.makeText(this, "Suggestions based on your pantry.", Toast.LENGTH_SHORT)
-                        .show();
-
-
-                break;
-            // action with ID action_settings was selected
-            case R.id.search_button:
                 Toast.makeText(this, "Search by Ingredients.", Toast.LENGTH_SHORT)
                         .show();
-                Intent intent = new Intent (this, recipeSuggestionsInput.class);
-                startActivity(intent);
+                Intent suggestionsButton = new Intent (this, recipeSuggestionsInput.class);
+                startActivity(suggestionsButton);
                 break;
+
+            case R.id.search_button:
+                Toast.makeText(this, "Search for recipes.", Toast.LENGTH_SHORT).show();
+                Intent searchRecipes = new Intent(this, searchRecipes.class);
+                startActivity(searchRecipes);
+                break;
+
+            case R.id.cook_book:
+                Toast.makeText(this, "Your personal cookbook.", Toast.LENGTH_SHORT).show();
+                Intent cookbook = new Intent(this, recipeBook.class);
+                startActivity(cookbook);
+                break;
+
             default:
                 break;
         }

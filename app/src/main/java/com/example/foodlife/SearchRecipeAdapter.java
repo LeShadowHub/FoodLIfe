@@ -1,9 +1,5 @@
 package com.example.foodlife;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +26,11 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolder> {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class SearchRecipeAdapter extends RecyclerView.Adapter<SearchRecipeAdapter.ViewHolder> {
     public static final String MY_PREFS_NAME = "SavedRecipes";
     private static ArrayList<JSONObject> values;
     private Context context;
@@ -60,7 +59,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
                     Bundle b = new Bundle();
                     try {
                         b.putInt("recipeID", (Integer) currentItem.get("id"));
-                        System.out.println(currentItem.get("id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -136,7 +134,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
 
     }
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RecipeListAdapter(ArrayList<JSONObject> myDataset) {
+    public SearchRecipeAdapter(ArrayList<JSONObject> myDataset) {
         values = myDataset;
     }
 
@@ -147,7 +145,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
 
     // Create new views (invoked by the layout manager)
     @Override
-    public RecipeListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SearchRecipeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_card_result, parent, false);
         ViewHolder pvh = new ViewHolder(v);
         return pvh;
@@ -157,15 +155,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     public void onBindViewHolder(ViewHolder viewholder, int i){
         try{
             System.out.println(values);
-            String description = "Used Ingredients: " + values.get(i).get("usedIngredientCount").toString()
-                    + "\nMissing Ingredients: " + values.get(i).get("missedIngredientCount").toString()
-                    + "\nLikes: " + values.get(i).get("likes").toString();
-            String url = (String)values.get(i).get("image");
+            String url = "https://spoonacular.com/recipeImages/" + (String)values.get(i).get("image");
             if(url.contains("null")){
               viewholder.recipePicture.setImageResource(R.drawable.recipe_pic_missing);
             }else Picasso.with(viewholder.itemView.getContext()).load(url).into(viewholder.recipePicture);
             viewholder.recipeTitle.setText((String)values.get(i).get("title"));
-            viewholder.recipeDescription.setText(description);
             viewholder.currentItem = values.get(i);
         }catch(JSONException e){
             e.printStackTrace();

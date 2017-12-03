@@ -1,12 +1,20 @@
 package com.example.foodlife;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.internal.NavigationMenuView;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class pullRecipe extends AppCompatActivity {
+public class pullRecipe extends AppCompatActivity{
 
     private static JSONObject recipe;
     ArrayList<String> originalStringIngredients = new ArrayList<String>();
@@ -49,6 +57,7 @@ public class pullRecipe extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 recipe = result;
+                System.out.println(recipe);
                 getAllValues();
             }
         }, id);
@@ -59,6 +68,7 @@ public class pullRecipe extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new IngredientListAdapter(originalStringIngredients);
         mRecyclerView.setAdapter(mAdapter);
+
     }
 
     private void getAllValues(){
@@ -88,13 +98,17 @@ public class pullRecipe extends AppCompatActivity {
                 recipeImage.setImageResource(R.drawable.recipe_pic_missing);
             }else Picasso.with(recipeImage.getContext()).load(imageURL).into(recipeImage);
 
-            instructions = (String)recipe.get("instructions");
-            System.out.println(instructions);
+            if(recipe.get("instructions").equals(null)){
+                instructions = "No instructions provided.";
+            }else{
+                instructions = (String)recipe.get("instructions");
+            }
             TextView instructionView = (TextView) findViewById(R.id.recipeDirections);
             instructionView.setText(instructions);
             readyInMinutes = recipe.get("readyInMinutes").toString();
         } catch (JSONException e) {
             e.printStackTrace();
+
         }
 
 
@@ -103,6 +117,7 @@ public class pullRecipe extends AppCompatActivity {
 
     private void getRecipeInformation(final VolleyCallbackJSONObject callback, int id){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+        System.out.println(id);
         String url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information?includeNutrition=false";
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -129,5 +144,6 @@ public class pullRecipe extends AppCompatActivity {
         requestQueue.add(jsObjRequest);
 
     }
+
 }
 

@@ -1,5 +1,7 @@
 package com.example.foodlife;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +18,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class addRecipes extends AppCompatActivity {
-
+    public static final String MY_PREFS_NAME = "SavedRecipes";
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -84,7 +86,9 @@ public class addRecipes extends AppCompatActivity {
                         result.put("image", "null");
                         JSONArray extendedIngredients = new JSONArray();
                         for(String ingredient : allIngredients){
-                            extendedIngredients.put(ingredient);
+                            JSONObject originalString = new JSONObject();
+                            originalString.put("originalString", ingredient);
+                            extendedIngredients.put(originalString);
                         }
                         String instructions = "";
                         for(String directions : allDirections){
@@ -95,6 +99,14 @@ public class addRecipes extends AppCompatActivity {
                         result.put("instructions", instructions);
 
                         System.out.println(result);
+
+                        SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                        editor.putString(title.getText().toString(), result.toString());
+                        editor.apply();
+
+                        Intent intent = new Intent(getApplicationContext(), recipeBook.class);
+                        startActivity(intent);
+                        finish();
 
 
                     }catch(JSONException e){
