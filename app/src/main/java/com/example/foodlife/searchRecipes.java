@@ -29,9 +29,7 @@ import java.util.Map;
 
 public class searchRecipes extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     ArrayList<JSONObject> recipeList = new ArrayList<JSONObject>();
 
@@ -40,10 +38,17 @@ public class searchRecipes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_recipes);
 
+        final EditText input = (EditText) findViewById(R.id.input);
+        input.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                input.getText().clear();
+            }
+        });
+
         final Button search = (Button) findViewById(R.id.search_button);
         search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                System.out.println("hellO");
+                recipeList.clear();
                 generateRecipes(new VolleyCallbackJSONObject() {
                     @Override
                     public void onSuccess(JSONObject result) {
@@ -64,9 +69,9 @@ public class searchRecipes extends AppCompatActivity {
             }
         });
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recipes);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recipes);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new SearchRecipeAdapter(recipeList);
         mRecyclerView.setAdapter(mAdapter);
@@ -82,7 +87,7 @@ public class searchRecipes extends AppCompatActivity {
 
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url =     "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?instructionsRequired=false&limitLicense=false&number=2&offset=0&query="+
+        String url =     "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?instructionsRequired=false&limitLicense=false&number=25&offset=0&query="+
                 query +"&type=main+course";
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

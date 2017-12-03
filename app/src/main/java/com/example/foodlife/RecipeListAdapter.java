@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -90,7 +91,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
                             }
                         }, (int) currentItem.get("id"));
 
-
+                        Toast.makeText(context, "Added to recipe book!", Toast.LENGTH_SHORT).show();
 
                     }catch(JSONException e){
                         e.printStackTrace();

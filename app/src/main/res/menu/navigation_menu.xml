@@ -20,10 +20,4 @@
         android:icon="@drawable/ic_utilities"
         android:title = "@string/utilities" />
 
-    <item android:id="@+id/nav_Settings"
-        android:icon="@drawable/ic_settings"
-        android:title = "@string/settings" />
-
-
-
 </menu>

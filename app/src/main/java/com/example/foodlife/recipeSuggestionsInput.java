@@ -114,7 +114,7 @@ public class recipeSuggestionsInput extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients= "
-                + urlInput +"&limitLicense=false&number=2&ranking=1";
+                + urlInput +"&limitLicense=false&number=25&ranking=1";
 
         JsonArrayRequest jsObjRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override

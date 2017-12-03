@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -93,6 +94,7 @@ public class SearchRecipeAdapter extends RecyclerView.Adapter<SearchRecipeAdapte
                     }catch(JSONException e){
                         e.printStackTrace();
                     }
+                    Toast.makeText(context, "Added to recipe book!", Toast.LENGTH_SHORT).show();
 
 
                 }

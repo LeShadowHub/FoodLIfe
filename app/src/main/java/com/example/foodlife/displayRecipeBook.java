@@ -1,10 +1,13 @@
 package com.example.foodlife;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ public class displayRecipeBook extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    JSONObject recipe = null;
 
     ArrayList<String> originalStringIngredients = new ArrayList<String>();
 
@@ -41,7 +45,7 @@ public class displayRecipeBook extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String strRecipe = sharedPref.getString(title, "0");
 
-        JSONObject recipe = null;
+
         if(strRecipe != null) try {
             recipe = new JSONObject(strRecipe);
         } catch (JSONException e) {
@@ -54,7 +58,6 @@ public class displayRecipeBook extends AppCompatActivity {
 
         try {
             JSONArray extendedIngredients = (JSONArray) recipe.get("extendedIngredients");
-            System.out.println(extendedIngredients);
             for(int i = 0; i < extendedIngredients.length(); i++){
                 JSONObject currentIngredient = (JSONObject)extendedIngredients.get(i);
                 System.out.println(currentIngredient.get("originalString"));
@@ -77,14 +80,26 @@ public class displayRecipeBook extends AppCompatActivity {
             }else{
                 instructions = (String)recipe.get("instructions");
             }
-            System.out.println(instructions);
+
             TextView instructionView = (TextView) findViewById(R.id.recipeDirections);
             instructionView.setText(instructions);
             readyInMinutes = recipe.get("readyInMinutes").toString();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        FloatingActionButton newRecipe = (FloatingActionButton) findViewById(R.id.favoriteFAB);
+        newRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), editRecipes.class);
+                try {
+                    intent.putExtra("title", recipe.get("title").toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
+            }
+        });
 
 
     }

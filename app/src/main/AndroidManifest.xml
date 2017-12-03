@@ -34,6 +34,7 @@
         <activity android:name=".pullRecipe" />
         <activity android:name=".recipeBook" />
         <activity android:name=".displayRecipeBook" />
+        <activity android:name=".editRecipes"/>
         <activity android:name=".searchRecipes"></activity>
     </application>
 

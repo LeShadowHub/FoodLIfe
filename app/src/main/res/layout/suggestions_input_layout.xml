@@ -14,7 +14,7 @@
         android:text=""
         android:textSize="18sp"
         android:layout_gravity="fill"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 
 
 </RelativeLayout>

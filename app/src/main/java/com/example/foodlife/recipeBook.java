@@ -20,12 +20,6 @@ import java.util.Map;
 
 public class recipeBook extends AppCompatActivity {
     private static final String MY_PREFS_NAME = "SavedRecipes";
-//need to pull recipes from internal storage
-    //same recipe card, same adapter w/ different on click
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     private ArrayList<JSONObject> recipeList = new ArrayList<JSONObject>();
 
@@ -55,11 +49,11 @@ public class recipeBook extends AppCompatActivity {
         }
 
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recipeList);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recipeList);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RecipeBookAdapter(recipeList);
+        RecyclerView.Adapter mAdapter = new RecipeBookAdapter(recipeList);
         mRecyclerView.setAdapter(mAdapter);
 
     }
