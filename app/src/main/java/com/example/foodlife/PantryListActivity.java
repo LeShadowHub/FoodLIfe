@@ -65,6 +65,8 @@ public class PantryListActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+        Toast.makeText(PantryListActivity.this, "Tap to Edit. Press and Hold to Delete", Toast.LENGTH_SHORT).show();
+
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             user_id = extras.getString("USER_ID");
@@ -103,6 +105,7 @@ public class PantryListActivity extends AppCompatActivity {
         listItem.setLayoutManager(layoutManager);
 
         loadData(); // Load data from FireStore
+
 
     }
 
@@ -184,6 +187,10 @@ public class PantryListActivity extends AppCompatActivity {
                     adapter = new ListItemAdapter(PantryListActivity.this, itemList);
                     listItem.setAdapter(adapter);
                     dialog.dismiss();
+
+                    title.getText().clear();
+                    description.getText().clear();
+                    description.clearFocus();
                 }
             })
             .addOnFailureListener(new OnFailureListener() {
