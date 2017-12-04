@@ -22,6 +22,4 @@
     <string name="utilities">Utilities</string>
     <string name="edit">edit</string>
 
-    <item name="visible" type="id" />
-    <item name="masked" type="id" />
 </resources>

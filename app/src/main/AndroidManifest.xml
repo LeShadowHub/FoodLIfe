@@ -34,8 +34,9 @@
         <activity android:name=".pullRecipe" />
         <activity android:name=".recipeBook" />
         <activity android:name=".displayRecipeBook" />
-        <activity android:name=".editRecipes"/>
-        <activity android:name=".searchRecipes"></activity>
+        <activity android:name=".editRecipes" />
+        <activity android:name=".searchRecipes" />
+        <activity android:name=".TimerActivity"></activity>
     </application>
 
 </manifest>

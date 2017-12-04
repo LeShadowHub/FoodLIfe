@@ -1,7 +1,6 @@
 package com.example.foodlife;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,7 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -142,7 +140,7 @@ public class RecipeMainActivity extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(MenuItem item){
         int id = item.getItemId();
         if(id == R.id.nav_Groceries){
-            Intent intent = new Intent(this, GroceryActivity.class);
+            Intent intent = new Intent(this, TimerActivity.class);
             startActivity(intent);
         }
         if(id == R.id.nav_Pantry){

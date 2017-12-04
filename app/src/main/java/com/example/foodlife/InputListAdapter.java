@@ -35,6 +35,9 @@ public class InputListAdapter extends RecyclerView.Adapter<InputListAdapter.View
     }
 
     public void remove(int position) {
+        if(position >= values.size()){
+            position = values.size()-1;
+        }
         values.remove(position);
         notifyItemRemoved(position);
     }
