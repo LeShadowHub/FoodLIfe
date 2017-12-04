@@ -22,7 +22,7 @@ public class UtilityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_utility);
 
         CircleMenu circleMenu = (CircleMenu) findViewById(R.id.circle_menu);
-        circleMenu.setMainMenu(Color.parseColor("#CDCDCD"), R.drawable.ic_note_add_white_36dp, R.drawable.ic_cancel_white_36dp)
+        circleMenu.setMainMenu(Color.parseColor("#CDCDCD"), R.drawable.ic_plus_white_36dp, R.drawable.ic_cancel_white_36dp)
                 .addSubMenu(Color.parseColor("#258CFF"), R.drawable.grocery_title)
                 .addSubMenu(Color.parseColor("#6D4C41"), R.drawable.pantry_title)
                 .addSubMenu(Color.parseColor("#FF0000"), R.drawable.utility_title)

@@ -54,14 +54,17 @@
         android:layout_alignParentEnd="true"/>
 
 
-    <ListView
-        android:id="@+id/notification"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/notificationList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/btnPantry"
         android:padding="5dp"
         android:layout_margin="8dp"
-        android:background="@drawable/border_box" />
+        android:background="@drawable/border_box">
+
+    </android.support.v7.widget.RecyclerView>
+
 
     <Button
         android:id="@+id/btnNote"
@@ -75,18 +78,5 @@
         android:text="@string/quick_note"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
-
-    <TextView
-        android:id="@+id/testing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnNote"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:textColor="@android:color/black"
-        android:text="TextView" />
-
-
-
 
 </RelativeLayout>

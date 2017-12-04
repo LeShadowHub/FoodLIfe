@@ -1,19 +1,22 @@
 package com.example.foodlife.model;
 
+import java.util.Date;
+
 /**
  * Created by OEM on 12/2/2017.
  */
 
 public class Item {
-    private String id, title,description;
+    private String id, title;
+    private Date expiration;
 
     public Item(){
     }
 
-    public Item(String id, String title, String description) {
+    public Item(String id, String title, Date expiration) {
         this.id = id;
         this.title = title;
-        this.description = description;
+        this.expiration = expiration;
     }
 
     public String getId() {
@@ -32,12 +35,12 @@ public class Item {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public Date getExpiration() {
+        return expiration;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setExpiration(Date expiration) {
+        this.expiration = expiration;
     }
 }
 

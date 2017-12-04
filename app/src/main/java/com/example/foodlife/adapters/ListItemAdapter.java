@@ -1,11 +1,14 @@
 package com.example.foodlife.adapters;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.example.foodlife.PantryListActivity;
@@ -50,6 +53,8 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemViewHolder>{
 
     PantryListActivity pantryListActivity;
     List<Item> itemList;
+    @SuppressLint("SimpleDateFormat")
+    private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
     public ListItemAdapter(PantryListActivity pantryListActivity, List<Item> itemList) {
         this.pantryListActivity = pantryListActivity;
@@ -68,14 +73,18 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemViewHolder>{
 
         // Set data for item
         holder.item_title.setText(itemList.get(position).getTitle());
-        holder.item_description.setText(itemList.get(position).getDescription());
+
+        String newDate = sdf.format(itemList.get(position).getExpiration());
+        holder.item_description.setText(newDate);
 
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onCLick(View view, int position, boolean isLongClick) {
                 // When user select item, data will auto set for Edit Text View
                 pantryListActivity.title.setText(itemList.get(position).getTitle());
-                pantryListActivity.description.setText(itemList.get(position).getDescription());
+
+                String newDate = sdf.format(itemList.get(position).getExpiration());
+                pantryListActivity.expiration.setText(newDate);
 
                 pantryListActivity.isUpdate = true;
                 pantryListActivity.idUpdate = itemList.get(position).getId();

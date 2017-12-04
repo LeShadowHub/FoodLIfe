@@ -36,7 +36,7 @@
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/descriptionPantry"
-                android:hint="@string/expiration_date_mm_dd_yy"
+                android:hint="@string/select_expiration_date_mm_dd_yyyy"
                 android:textSize="20sp"
                 android:inputType="textMultiLine"
                 android:textColorHint="@android:color/white"

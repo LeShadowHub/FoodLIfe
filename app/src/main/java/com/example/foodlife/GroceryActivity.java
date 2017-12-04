@@ -16,6 +16,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.example.foodlife.R;
 import com.example.foodlife.adapters.CustomCursorAdapter;
@@ -35,6 +36,8 @@ public class GroceryActivity extends AppCompatActivity implements LoaderManager.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery);
+
+        setTitle("Grocery List");
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewItems);
 

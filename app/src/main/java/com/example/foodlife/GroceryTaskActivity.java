@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -18,6 +19,8 @@ public class GroceryTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery_task);
+
+        setTitle("Add New Item");
 
         // Initialize highest mPriority by default
         ((RadioButton) findViewById(R.id.radButton1)).setChecked(true);
