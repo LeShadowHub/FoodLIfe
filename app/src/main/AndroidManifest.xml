@@ -23,39 +23,40 @@
         <activity
             android:name=".RecipeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".GroceryActivity"/>
+        <activity android:name=".GroceryActivity" />
         <activity
             android:name=".PantryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".UtilityActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".UtilityActivity"/>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NoteListActivity" />
         <activity android:name=".NoteActivity" />
-        <activity
-            android:name=".GroceryTaskActivity" />
+        <activity android:name=".GroceryTaskActivity" />
+
         <provider
             android:name=".data.TaskContentProvider"
             android:authorities="com.example.foodlife.provider"
             android:exported="false" />
+
         <activity
             android:name=".PantryListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Testing" />
-        <activity android:name=".ConversionsActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ConversionsActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".addRecipes" />
         <activity android:name=".recipeSuggestionsInput" />
         <activity android:name=".RecipeListView" />
-        <activity android:name=".pullRecipe"/>
+        <activity android:name=".pullRecipe" />
         <activity android:name=".recipeBook" />
-        <activity android:name=".displayRecipeBook"/>
-        <activity android:name=".editRecipes"/>
+        <activity android:name=".displayRecipeBook" />
+        <activity android:name=".editRecipes" />
         <activity android:name=".searchRecipes" />
+        <activity android:name=".TimerActivity"></activity>
     </application>
 
 </manifest>

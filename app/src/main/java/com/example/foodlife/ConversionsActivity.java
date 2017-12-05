@@ -39,6 +39,8 @@ public class ConversionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversions);
 
+        setTitle("Conversions");
+
         Button buttonGo = (Button) findViewById(R.id.buttonGo);
 
 

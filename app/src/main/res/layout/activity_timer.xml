@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.foodlife.TimerActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/startBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:text="@string/start"
+            android:textColor="@android:color/black" />
+
+
+        <Button
+            android:id="@+id/resetBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/reset"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="200dp">
+
+        <EditText
+            android:id="@+id/inHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:minWidth="50dp"
+            android:textSize="30sp"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/inMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="number"
+            android:textSize="30sp"
+            android:minWidth="50dp" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textSize="30sp"/>
+
+        <EditText
+            android:id="@+id/inSeconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:inputType="number"
+            android:textSize="30sp"
+            android:minWidth="50dp" />
+
+    </LinearLayout>
+
+   <LinearLayout
+       android:paddingStart="8dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:gravity="center"
+       android:layout_marginTop="210dp" >
+
+       <TextView
+           android:id="@+id/hrDisplay"
+           android:layout_width="50dp"
+           android:layout_height="wrap_content"
+           android:layout_marginEnd="8dp"
+           android:textSize="30sp"
+           android:visibility="invisible" />
+
+       <TextView
+           android:layout_width="10dp"
+           android:layout_height="wrap_content"
+           android:textSize="30sp"/>
+
+       <TextView
+           android:id="@+id/minDisplay"
+           android:layout_width="50dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="8dp"
+           android:layout_marginEnd="8dp"
+           android:textSize="30sp"
+           android:visibility="invisible"/>
+
+       <TextView
+           android:layout_width="10dp"
+           android:layout_height="wrap_content"
+           android:textSize="30sp" />
+
+       <TextView
+           android:id="@+id/secDisplay"
+           android:layout_width="50dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="8dp"
+           android:textSize="30sp"
+           android:visibility="invisible" />
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="270dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:textSize="30sp"
+            android:text="HH"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:textSize="30sp"
+            android:text="MM"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:textSize="30sp"
+            android:text="SS"/>
+    </LinearLayout>
+
+</RelativeLayout>

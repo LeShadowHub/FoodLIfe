@@ -12,50 +12,66 @@ import com.hitomi.cmlibrary.OnMenuSelectedListener;
 
 public class UtilityActivity extends AppCompatActivity {
 
-    String select[] = {"grocery",
-            "pantry",
-            "utility"};
+    String select[] = {"Conversions",
+            "Timer",
+            "Notes"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_utility);
 
+        setTitle("Utilities");
+
         CircleMenu circleMenu = (CircleMenu) findViewById(R.id.circle_menu);
-        circleMenu.setMainMenu(Color.parseColor("#CDCDCD"), R.drawable.ic_plus_white_36dp, R.drawable.ic_cancel_white_36dp)
-                .addSubMenu(Color.parseColor("#258CFF"), R.drawable.grocery_title)
-                .addSubMenu(Color.parseColor("#6D4C41"), R.drawable.pantry_title)
-                .addSubMenu(Color.parseColor("#FF0000"), R.drawable.utility_title)
+        circleMenu.setMainMenu(Color.parseColor("#795548"), R.drawable.ic_plus_white_36dp, R.drawable.ic_cancel_white_36dp)
+                .addSubMenu(Color.parseColor("#29d69f"), R.drawable.ic_weight_kilogram_white_48dp)  //Conversions
+                .addSubMenu(Color.parseColor("#20ab7f"), R.drawable.ic_alarm_white_48dp)   //Timer
+                .addSubMenu(Color.parseColor("#188160"), R.drawable.ic_note_text_white_48dp)  //Quick Tips
                 .setOnMenuSelectedListener(new OnMenuSelectedListener() {
                     @Override
                     public void onMenuSelected(int index) {
                         Toast.makeText(UtilityActivity.this, "You selected " + select[index], Toast.LENGTH_SHORT).show();
 
-                        /*new Handler().postDelayed(new Runnable() {
+                        Runnable conversions = new Runnable() {
                             @Override
                             public void run() {
-
-                                Intent i=new Intent(UtilityActivity.this, NoteActivity.class);
-                                startActivity(i);
+                                Intent intent = new Intent(UtilityActivity.this, ConversionsActivity.class);
+                                startActivity(intent);
                             }
-                        }, 5000);*/
+                        };
 
-                        /*Runnable r = new Runnable() {
+                        Runnable timer = new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(UtilityActivity.this, TimerActivity.class);
+                                startActivity(intent);
+                            }
+                        };
+
+                        Runnable tips = new Runnable() {
                             @Override
                             public void run() {
                                 // if you are redirecting from a fragment then use getActivity() as the context.
-                                Intent intent = new Intent(UtilityActivity.this, NoteActivity.class);
+                                Intent intent = new Intent(UtilityActivity.this, NoteListActivity.class);
                                 startActivity(intent);
                                 // To close the CurrentActitity, r.g. SpalshActivity
-                                finish();
                             }
                         };
 
                         if(index == 0){
                             Handler h = new Handler();
-                            // The Runnable will be executed after the given delay time
-                            h.postDelayed(r, 1000); // will be delayed for 1.5 seconds
-                        }*/
+                            h.postDelayed(conversions, 1500);
+                        }
+                        if(index == 1){
+                            Handler h = new Handler();
+                            h.postDelayed(timer, 1500);
+                        }
+
+                        if(index == 2){
+                            Handler h = new Handler();
+                            h.postDelayed(tips, 1500);
+                        }
                     }
                 })
                 .openMenu();

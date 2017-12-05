@@ -46,4 +46,11 @@
     <string name="enter_your_query">Search Recipes</string>
     <string name="go">Go!</string>
     <string name="search2">Search!</string>
+    <string name="start">Start</string>
+    <string name="back">BACK</string>
+    <string name="reset">RESET</string>
+    <string name="amount">Amount</string>
+    <string name="new_unit">New Unit</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="current_unit">Current Unit</string>
 </resources>

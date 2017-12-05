@@ -153,7 +153,7 @@ public class RecipeActivity extends AppCompatActivity implements NavigationView.
             Toast.makeText(this, "You are currently on Recipes", Toast.LENGTH_SHORT).show();
         }
         if(id == R.id.nav_Utilities){
-            Intent intent = new Intent(this, ConversionsActivity.class);
+            Intent intent = new Intent(this, UtilityActivity.class);
             startActivity(intent);
         }
 

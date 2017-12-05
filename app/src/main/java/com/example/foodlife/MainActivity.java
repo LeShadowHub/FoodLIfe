@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         btnNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent newNoteListActivity = new Intent(MainActivity.this, NoteListActivity.class);
+                Intent newNoteListActivity = new Intent(MainActivity.this, NoteActivity.class);
                 startActivity(newNoteListActivity);
             }
         });

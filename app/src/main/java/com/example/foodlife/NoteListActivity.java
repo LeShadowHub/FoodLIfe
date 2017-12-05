@@ -26,6 +26,8 @@ public class NoteListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
 
+        setTitle("Notes");
+
         mListViewNotes = (ListView) findViewById(R.id.note_listview);
 
 
